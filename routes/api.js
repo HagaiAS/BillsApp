@@ -167,5 +167,5 @@ exports.upditem = function(req, res, next){
 
 exports.mobile = function(req, res, next){
     //res.redirect('/m/index.html');
-    res.redirect('/m/build/index.html');
+    res.redirect('/m/build/BillsApp/production/index.html');
 };

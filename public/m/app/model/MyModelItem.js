@@ -1,4 +1,4 @@
-var APIURL = 'http://bbxdev.eu01.aws.af.cm/api/calendarlist';
+var APIURL = '/api/calendarlist';
 
 Ext.define('BillsApp.model.MyModelItem',{
     extend: 'Ext.data.Model',
@@ -7,7 +7,7 @@ Ext.define('BillsApp.model.MyModelItem',{
         proxy: {            
             type:       'jsonp',
             //url:      "./api/calendarlist",            
-            url:        APIURL,
+            url:        document.location.hostname + '/api/calendarlist',
             //url:        "./json/test.json",
             reader:     'json'
         },

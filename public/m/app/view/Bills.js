@@ -177,9 +177,10 @@ Ext.define('BillsApp.view.Bills', {
                         hideOnMaskTap:      true,
                         floating:           true,
                         
-                        src:                '../download/' + record.get('file'),
+                        //src:                '/download/' + record.get('file'),
                         //src :               './pdf/abc.pdf',
                         //src               : 'http://bbxdev.eu01.aws.af.cm/download/' + record.get('file'), 
+                        src:                document.location.hostname + '/download/' + record.get('file'), 
                         styleHtmlContent:   true,
                         scrollable:         true,
                         width:              '100%',
