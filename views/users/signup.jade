@@ -1,0 +1,15 @@
+
+extends ../layout
+
+block content
+	include account
+	include modals/alert
+
+block scripts
+	script(src='/users/vendor/jquery.min.js')
+	script(src='/users/vendor/jquery.form.js')
+	script(src='/users/vendor/bootstrap-modal.js')
+	script(src='/users/vendor/bootstrap-transition.js')
+	script(src='/users/js/views/signup.js')
+	script(src='/users/js/controllers/signupController.js')
+	script(src='/users/js/form-validators/accountValidator.js')

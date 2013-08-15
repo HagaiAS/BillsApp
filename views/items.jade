@@ -1,0 +1,10 @@
+extends ./layout
+block content
+	h1 Users
+		p
+		a(href="/api/new") Create new profile
+		ul
+		- for(var token in items) {
+		li
+		a(href="/api/" + encodeURIComponent(token))= items[token].from
+		- };

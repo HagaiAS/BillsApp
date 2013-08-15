@@ -1,0 +1,27 @@
+extends ./layout
+block content
+	h1 New Item
+	form(method="POST", action="/api/insert",enctype='multipart/form-data')
+		p
+		label(for="token") token<br />
+		input#token(name="token")
+		p
+		label(for="from") from<br />
+		input#from(name="from")
+		p
+		label(for="subject") subject<br />
+		textarea#subject(name="subject")
+		p
+		label(for="body-html") body-html<br />
+		textarea#body-html(name="body-html")		
+		p
+		label(for="timestamp") timestamp<br />
+		textarea#timestamp(name="timestamp")		
+		p
+		label(for="attachment-1") attach 1<br />		
+		input(name='attachment-1', type='file', multiple='multiple')
+		p
+		label(for="attachment-2") attach 2<br />		
+		input(name='attachment-2', type='file', multiple='multiple')		
+		p
+		input(type="submit", value="Create")

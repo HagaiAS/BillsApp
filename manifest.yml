@@ -1,0 +1,19 @@
+---
+applications:
+  .:
+    name: bbox
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    infra: eu-aws
+    url: ${name}.${target-base}
+    mem: 64M
+    instances: 1
+    services:
+      bbx:
+        type: mongodb
+      mongodb-695a6:
+        type: mongodb

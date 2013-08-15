@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="en" ng-app="myModule" dir="rtl" >
+<head>
+
+<!--[if lte IE 8]>
+    <script>
+    // The ieshiv takes care of our ui.directives, bootstrap module directives and 
+    // AngularJS's ng-view, ng-include, ng-pluralize and ng-switch directives.
+    // However, IF you have custom directives (yours or someone else's) then
+    // enumerate the list of tags in window.myCustomTags
+ 
+    window.myCustomTags = [ 'yourDirective', 'somebodyElsesDirective' ]; // optional
+    </script>
+    <script src="build/angular-ui-ieshiv.js"></script>
+<![endif]-->
+
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+   <link rel="stylesheet" href="lib/fullcalendar-1.5.4/demos/cupertino/theme.css">
+  <link rel="stylesheet" href="css/app-rtl.css">
+  <link rel="stylesheet" href="css/bootstrap-rtl.css">
+  <link rel="stylesheet" href="lib/angular-ui-0.4.0/build/angular-ui.css">
+  <link rel="stylesheet" href="lib/fullcalendar-1.5.4/fullcalendar/fullcalendar.css">
+ 	
+
+  <script src="lib/fullcalendar-1.5.4/jquery/jquery-1.8.1.min.js"></script>
+  <script src="lib/fullcalendar-1.5.4/jquery/jquery-ui-1.8.23.custom.min.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <!--script src="lib/angular-ui-0.4.0/build/angular-ui.js"></script-->
+
+  <script src="./js/app.js"></script>
+  <script src="./js/controllers.js"></script>
+  <!--script src="js/filters.js"></script-->
+  <!--script src="js/services.js"></script-->
+  <!--script src="lib/angular/angular-resource.js"></script-->
+  <script src="lib/angular-ui-0.4.0/common/module.js"></script>
+  <script src="lib/fullcalendar-1.5.4/fullcalendar/fullcalendar.js"></script>
+  <script src="lib/angular-ui-0.4.0/modules/directives/calendar/calendar.js"></script>
+
+   
+</head>
+<body>
+ 
+
+
+ <div id="directives-calendar" ng-controller="CalendarCtrl">
+				<div class="page-header">
+					<h1>לוח שנה</h1>
+				</div>
+				<div class="well">
+					<div class="row">
+						<div class="span3">
+							<h3>בחר חשבון</h3>
+							<p>...</p>
+							<h3></h3>
+							<p>לוח שנה זה פשוט</p>
+							<h4>לחץ להוספת אירוע</h4>
+						    </b>
+							<button style="margin-bottom: 3px;" class="btn btn-primary" ng-click="addChild()">Add Child</button>
+						    <ul>
+						        <li ng-repeat="e in events">
+						            <p class="alert alert-info">
+						              {{e.title}}
+						              <a style="float: left; margin-top: -5px;" class="btn btn-danger" ng-click="remove($index)">x</a>
+						            </p>
+						        </li>
+						    </ul>
+
+						</div>
+
+						<div ui-calendar="{}" id='calendar' class="ui-widget span10 calendar" ng-model="eventSources"></div>
+					</div>
+				</div>
+				
+
+</div>
+  <!--div ng-view></div-->
+
+</body>
+</html>

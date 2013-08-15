@@ -1,0 +1,33 @@
+﻿doctype 5
+html(lang='he',ng-app='myModule',dir='rtl')
+  head
+    title= title
+    link(rel='stylesheet', href='/app/lib/fullcalendar-1.6.1/demos/cupertino/theme.css')
+    link(rel='stylesheet', href='/app/css/app-rtl.css')
+    link(rel='stylesheet', href='/app/css/bootstrap-rtl.css')
+    link(rel='stylesheet', href='/app/lib/angular-ui-0.4.0/build/angular-ui.css')
+    link(rel='stylesheet', href='/app/lib/fullcalendar-1.6.1/fullcalendar/fullcalendar.css')
+    //link(rel='stylesheet', href='/app/lib/fullcalendar-1.6.1/fullcalendar/bootstrap-fullcalendar.css')	
+    script(src='/app/lib/fullcalendar-1.6.1/jquery/jquery-1.9.1.min.js')
+    script(src='/app/lib/fullcalendar-1.6.1/jquery/jquery-ui-1.10.2.custom.min.js')
+    script(src='/app/lib/angular/angular.js')
+    script(src='/app/js/app.js')
+    script(src='/app/js/controllers.js')
+    script(src='/app/lib/angular-ui-0.4.0/common/module.js')
+    script(src='/app/lib/fullcalendar-1.6.1/fullcalendar/fullcalendar.js')
+    script(src='/app/lib/angular-ui-0.4.0/modules/directives/calendar/calendar.js')
+
+  body
+    block content
+      div#directives-calendar(ng-controller='CalendarCtrl')
+        div.well
+          div.row
+            div.span3
+              button.btn.btn-primary(style='margin-bottom: 3px;',ng-click='addEvent()') Add Child
+              ul                			 
+                li(ng-repeat='e in events')
+                      p.alert.alert-info					
+                        {{e.title}}  
+                        a.btn.btn-danger(style='float: left; margin-top: -5px;',ng-click='remove($index)') x
+            div#calendar.ui-widget.span10.calendar(ng-model='eventSources',calendar='mycalendar',config='uiConfig.calendar',ui-calendar='uiConfig.calendar')
+            

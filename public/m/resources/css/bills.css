@@ -1,0 +1,24 @@
+.logo{
+    float:left;
+    left: 50px;
+    height:60px;
+    width:60px;
+    margin-right:10px;
+    background-size:cover;
+    background-position:center center;
+    background:#ddd;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    -ms-border-radius:3px;
+    -o-border-radius:3px;
+    border-radius:3px;
+    -webkit-box-shadow:inset 0 0 2px rgba(0,0,0,0.6);
+    position:   relative;
+}
+
+.x-innerhtml {
+    text-align:center;    
+}
+.pdf-page-container {
+    text-align: center;
+}
