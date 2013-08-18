@@ -6,8 +6,9 @@ Ext.define('BillsApp.model.MyModelItem',{
     config: {
         proxy: {            
             type:       'jsonp',
-            //url:      "./api/calendarlist",            
-            url:        document.location.hostname + '/api/calendarlist',
+            //url:      "./api/calendarlist",
+            pageParam:  'page', //This parameter needs to be modified
+            url:        'http://bbxdev.eu01.aws.af.cm/api/calendarlist',
             //url:        "./json/test.json",
             reader:     'json'
         },

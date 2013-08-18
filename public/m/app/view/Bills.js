@@ -6,7 +6,7 @@ Ext.define('BillsApp.view.Bills', {
         'Ext.dataview.List',
         'Ext.data.proxy.JsonP',
         'Ext.ux.panel.PDF',
-        'Ext.plugin.DataViewPaging',
+        'Ext.plugin.ListPaging',
         'Ext.plugin.PullRefresh',
         'Ext.field.Search',
         'Ext.picker.Date',       
@@ -139,107 +139,114 @@ Ext.define('BillsApp.view.Bills', {
                 store:          'MyStoreItems',
                 loadingText:    "... טוען חשבוניות ",
 	            emptyText:      '</pre><div class="list-empty-text">רשימת החשבוניות שלך ריקה</div><pre>',
+                grouped:        true,               
+                itemHeight:     75,
                 
                 plugins: [
                     { 
-                        xclass: 'Ext.plugin.DataViewPaging',
-                        autoPaging: true
+                        xclass: 'Ext.plugin.ListPaging',
+                        autoPaging: true,
+                        
+                        // These override the text; use CSS for styling
+                        loadMoreText: '...טען חשבוניות נוספות',
+                        noMoreRecordsText: 'אין עוד חשבוניות נוספות'
                     },
                     { 
                         xclass: 'Ext.plugin.PullRefresh'                                                
                     }
                 ],
                 
-                //variableHeights: false, 
-                itemHeight: 80,                
-                
                 itemTpl:[
                     '<div class="logo" style="background-image:url(/{logo});"></div>' +                    
                     '<span class="smaller"><b><center>{company}</center><b></span>'                    
-                ].join(''),
+                ].join(''), 
+                onItemDisclosure: true,
                 
-                grouped: true,                
-                
-                onItemDisclosure: function(record, btn, index) { 
-                //Ext.Viewport.removeAll();
-                var me = this;
-                me.hide();        
-                //this.getParent().getNavigationBar().setHidden(false);    
-                var PdfReaderContainer = this.up().push( {
-                     fullscreen: true,
-                     items: [
-                     {            
-                        xtype:              'pdfpanel',                         
-                        fullscreen:         true,                        
-                        
-                        // Make it modal so you can click the mask to hide the overlay
-                        modal:              true,
-                        hideOnMaskTap:      true,
-                        floating:           true,
-                        
-                        //src:                '/download/' + record.get('file'),
-                        //src :               './pdf/abc.pdf',
-                        //src               : 'http://bbxdev.eu01.aws.af.cm/download/' + record.get('file'), 
-                        src:                document.location.hostname + '/download/' + record.get('file'), 
-                        styleHtmlContent:   true,
-                        scrollable:         true,
-                        width:              '100%',
-                        height:             '100%',
-                         
-                        style : {
-                            backgroundColor: '#333'
-                        },
-                        
-                        // Insert a title docked at the top with a title
-                        items: [
-                            {
-                                docked: 'top',
-                                xtype: 'toolbar',
-                                ui: "light",                                
-                                title: ' ( ' + Ext.util.Format.date(record.get('start'), 'd/m/y') +
-                                       ' ) ' +  record.get('company'),
-                                items: [
-                                    {
-                                        xtype:          'button',
-                                        ui:             'back',
-                                        iconCls:        'delete',
-                                        docked:         'left',
-                                        listeners:    [
-                                            {
-                                            event: 'tap',
-                                            
-                                            fn: function () {
-                                                PdfReaderContainer.hide();
-                                                me.show();    
-                                                    //Ext.Viewport.removeAll();
-                                                    //Ext.Viewport.add(Ext.create('BillsApp.view.Main'));
-                                                    //Ext.Viewport.add(Ext.create('BillsApp.view.MainMenuViewer'));
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        xtype:          'button',
-                                        ui:             'confirm-round',
-                                        iconCls:        'action',
-                                        docked:         'right',
-                                        listeners:    [
-                                            {
-                                            event: 'tap',
-                                            
-                                            fn: function () {
+                listeners: {
+                    itemdoubletap: function (list, idx, target, record, evt) {
+                    /*onItemDisclosure: function(record, btn, index) { */
+                    //Ext.Viewport.removeAll();
+                    var me = this;
+                    me.hide();
+                    console.log('http://bbxdev.eu01.aws.af.cm/download/' + record.get('file'));
+                    //this.getParent().getNavigationBar().setHidden(false);    
+                    var PdfReaderContainer = this.up().push( {
+                         fullscreen: true,
+                         items: [
+                         {            
+                            xtype:              'pdfpanel',                         
+                            fullscreen:         true,                        
+                            
+                            // Make it modal so you can click the mask to hide the overlay
+                            modal:              true,
+                            hideOnMaskTap:      true,
+                            //floating:           true,
+                            loadingMessage:     'החשבונית נטענת',
+                            //src:                '/download/' + record.get('file'),
+                            //src :               './pdf/abc.pdf',
+                            src:                'http://bbxdev.eu01.aws.af.cm/download/' + record.get('file'),
+                            
+                            //src:                window.location.hostname + '/download/' + record.get('file'), 
+                            styleHtmlContent:   true,
+                            scrollable:         true,
+                            width:              '100%',
+                            height:             '100%',
+                             
+                            style : {
+                                backgroundColor: '#333'
+                            },
+                            
+                            // Insert a title docked at the top with a title
+                            items: [
+                                {
+                                    docked: 'top',
+                                    xtype: 'toolbar',
+                                    ui: "light",                                
+                                    title: ' ( ' + Ext.util.Format.date(record.get('start'), 'd/m/y') +
+                                           ' ) ' +  record.get('company'),
+                                    items: [
+                                        {
+                                            xtype:          'button',
+                                            ui:             'back',
+                                            iconCls:        'arrow_left',
+                                            docked:         'left',
+                                            listeners:    [
+                                                {
+                                                event: 'tap',
+                                                
+                                                fn: function () {
                                                     PdfReaderContainer.hide();
-                                                    me.show();  
+                                                    me.show();    
+                                                        //Ext.Viewport.removeAll();
+                                                        //Ext.Viewport.add(Ext.create('BillsApp.view.Main'));
+                                                        //Ext.Viewport.add(Ext.create('BillsApp.view.MainMenuViewer'));
+                                                    }
                                                 }
-                                            }
-                                        ]
-                                    }                                    
-                                ]
-                            }
-                        ]
+                                            ]
+                                        },
+                                        {
+                                            xtype:          'button',
+                                            ui:             'confirm-round',
+                                            iconCls:        'action',
+                                            docked:         'right',
+                                            listeners:    [
+                                                {
+                                                event: 'tap',
+                                                
+                                                fn: function () {
+                                                        PdfReaderContainer.hide();
+                                                        me.show();  
+                                                    }
+                                                }
+                                            ]
+                                        }                                    
+                                    ]
+                                }
+                            ]
+                        }
+                       ]
+                       });
                     }
-                   ]
-                   });
                   /*PdfReaderContainer.getParent().getNavigationBar().setTitle(' ( ' +
                         Ext.util.Format.date(record.get('start'), 'd/m/y') +
                         ' ) ' +  record.get('company'));
@@ -252,3 +259,5 @@ Ext.define('BillsApp.view.Bills', {
         }*/
     }    
 });
+
+

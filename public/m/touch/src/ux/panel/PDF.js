@@ -7,8 +7,7 @@
 Ext.define('Ext.ux.panel.PDF', {
     extend: 'Ext.Container',
     xtype : 'pdfpanel',
-    alias : 'widget.pdfpanel',
-    
+    alias : 'widget.pdfpanel',    
     config: {
         
         /**
@@ -33,7 +32,7 @@ Ext.define('Ext.ux.panel.PDF', {
          * @cfg{Double} maxPageScale
          * Maximal posible scaling of the PDF if the user zoomes in. 1 = 100%
          */
-        maxPageScale: 1.5,
+        maxPageScale: 2.5,
         
         /**
          * @cfg{Double} doubleTapScale
@@ -159,7 +158,13 @@ Ext.define('Ext.ux.panel.PDF', {
         
         // config PDF.JS
         PDFJS.disableWorker = !!me.getDisableWorker();
-
+        
+        // *******************************
+        if (!PDFJS)
+        {
+            throw new Error("PDFJS is not declared !! ");
+        }
+        
         // mask viewer
         if (me.getLoadingMask()) {
             me.showLoader();

@@ -39,14 +39,14 @@ Ext.define('Ext.plugin.ListPaging', {
         /**
          * @cfg {String} loadMoreText The text used as the label of the Load More button.
          */
-        loadMoreText: '...טען חשבוניות נוספות',
+        loadMoreText: '',
 
         /**
          * @cfg {String} noMoreRecordsText The text used as the label of the Load More button when the Store's
          * {@link Ext.data.Store#totalCount totalCount} indicates that all of the records available on the server are
          * already loaded
          */
-        noMoreRecordsText: 'אין עוד חשבוניות נוספות',
+        noMoreRecordsText: '',
 
         /**
          * @private
@@ -157,6 +157,34 @@ Ext.define('Ext.plugin.ListPaging', {
         }
     },
 
+    
+   /* onListUpdate : function() {
+        if (this.list.store && this.list.store.data.length < (this.list.store.currentPage * this.list.store.pageSize)) {
+            if (!this.rendered) {
+                return false;
+            } else if (!this.autoPaging) {
+                this.el.removeCls('x-loading');
+                this.el.remove();
+            } else {
+                this.loading = false;
+            }
+            return false;
+        }
+    
+        if (!this.rendered) {
+            this.render();
+        }
+
+        this.el.appendTo(this.list.getTargetEl());
+        if (!this.autoPaging) {
+            this.el.removeCls('x-loading');
+        }
+        this.loading = false;
+    }*/
+    
+    
+    
+    
     /**
      * @private
      * Removes the List/DataView's loading mask because we show our own in the plugin. The logic here disables the

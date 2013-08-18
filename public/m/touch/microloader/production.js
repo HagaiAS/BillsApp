@@ -718,4 +718,31 @@
             });
         }
     };
+    
+    var lang = window.navigator.userLanguage || window.navigator.language;
+    console.log("the language is :" + lang);
+    
+     if(lang === "he"){
+         loadJsFile("touch/sencha-rtl.js");
+         loadCssFile("touch/resources/css/sencha-touch-rtl.css");
+         loadCssFile("resources/css/app-rtl.css");
+     }
+    
+     function loadJsFile( fileName ){
+         var fileReference = document.createElement('script');
+         fileReference.setAttribute("type", "text/javascript");
+         fileReference.setAttribute("src", fileName);
+         document.getElementsByTagName("head")[0].appendChild(fileReference);
+     }
+    
+     function loadCssFile( fileName ){
+        var fileReference = document.createElement("link");
+        fileReference.setAttribute("rel", "stylesheet");
+        fileReference.setAttribute("type", "text/css");
+        fileReference.setAttribute("href", fileName);
+        document.getElementsByTagName("head")[0].appendChild(fileReference);
+    }
+
+    
+    
 })(this);

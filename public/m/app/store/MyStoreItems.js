@@ -1,12 +1,12 @@
 Ext.define('BillsApp.store.MyStoreItems', {
     extend:     'Ext.data.Store',
-    //requires: ['BillsApp.model.MyModelItem'],    
+    requires: ['BillsApp.model.MyModelItem'],    
     config: {   
         model: 'BillsApp.model.MyModelItem',
         autoLoad: true,        
         storeId: "MyStoreItems",
-        //clearOnPageLoad: false,  // This is true by default
-        //pageSize: 2,
+        clearOnPageLoad: false,  // This is true by default
+        pageSize: 5,
         sorters: [
             {
                 property: 'start',

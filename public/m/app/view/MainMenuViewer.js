@@ -82,9 +82,8 @@ Ext.define('BillsApp.view.MainMenuViewer', {
                     title: {
                         title: 'תפריט',
                         centered: true,
-                        width: 200,
-                       
-                },
+                        width: 200,                       
+                    },
                 
                 /**
                  *  Here's an example of how to add a different type of
@@ -96,13 +95,10 @@ Ext.define('BillsApp.view.MainMenuViewer', {
                     xtype: 'searchfield',
                     placeHolder: 'חפש',
                     width: 180
-                }]*/
-                
-            }]
-            
-        },      
-
-        
+                }]*/                
+                }
+            ]            
+        }, 
         /**
          *  Example of how to re-order the groups.
          */

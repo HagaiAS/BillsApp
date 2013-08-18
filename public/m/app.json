@@ -16,7 +16,7 @@
      * This value is needed when build to resolve your application's dependencies if it requires server-side resources
      * that are not accessible via file system protocol.
      */
-    "url": "http://localhost/m/",
+    "url": "null",
 
     /**
      * List of all JavaScript assets in the right execution order.
@@ -49,10 +49,13 @@
             "update": "delta"
         },
         {
-            "path": "touch/src/pdf.js/compatibility.js"
+            "path": "touch/src/myJS/compatibility.js"
         },
         {
-            "path": "touch/src/pdf.js/pdf.js"
+            "path": "touch/src/myJS/pdf.js"
+        },
+        {
+            "path": "touch/sencha-rtl.js"
         }
     ],
 
@@ -74,7 +77,7 @@
      */
     "css": [
         {
-            "path": "resources/css/app.css",
+            "path": "resources/css/app_style.css",
             "update": "delta"
         },
         {
@@ -96,7 +99,15 @@
         {
             "path": "resources/css/bills.css",
             "update": "delta"
-        }
+        },
+        {
+            "path": "touch/resources/css/sencha-touch-rtl.css",
+            "update": "delta"
+        },
+        {
+            "path": "resources/css/app-rtl.css",
+            "update": "delta"
+        }        
     ],
 
     /**
